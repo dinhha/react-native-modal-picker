@@ -34,7 +34,9 @@ const propTypes = {
     cancelTextStyle: Text.propTypes.style,
     overlayStyle: View.propTypes.style,
     cancelText: PropTypes.string,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    keyField: PropTypes.string,
+    labelField: PropTypes.string
 };
 
 const defaultProps = {
@@ -114,9 +116,9 @@ export default class ModalPicker extends BaseComponent {
 
     renderOption(option) {
         return (
-            <TouchableOpacity key={option.key} onPress={()=>this.onChange(option)}>
+            <TouchableOpacity key={option[this.props.keyField]} onPress={()=>this.onChange(option)}>
                 <View style={[styles.optionStyle, this.props.optionStyle]}>
-                    <Text style={[styles.optionTextStyle,this.props.optionTextStyle]}>{option.label}</Text>
+                    <Text style={[styles.optionTextStyle,this.props.optionTextStyle]}>{option[this.props.labelField]}</Text>
                 </View>
             </TouchableOpacity>)
     }
